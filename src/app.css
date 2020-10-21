@@ -14,7 +14,7 @@ body {
   margin: 24px;
 }
 
-main {
+section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
