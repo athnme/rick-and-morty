@@ -13,8 +13,8 @@ function App() {
     children: [characterList],
   });
 
-  async function loadCharacters() {
-    const characterS = await getCharacterS();
+  async function loadCharacters(name) {
+    const characterS = await getCharacterS(name);
     const characterElements = characterS.map((character) =>
       Character({
         name: character.name,
@@ -22,13 +22,20 @@ function App() {
       })
     );
 
+    characterList.innerHTML = "";
     characterList.append(...characterElements);
   }
 
-  loadCharacters();
-  const container = createElement("div", {
-    children: [header, main],
+  const searchBar = createElement("input", {
+    onchange: (event) => loadCharacters(event.target.value),
   });
+
+  loadCharacters();
+
+  const container = createElement("div", {
+    children: [header, searchBar, main],
+  });
+
   return container;
 }
 
