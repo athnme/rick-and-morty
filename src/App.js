@@ -2,8 +2,10 @@ import "./app.css";
 import Header from "./components/Header";
 import Character from "./components/Character";
 import allCharacters from "./components/allCharacters";
+
 import Button from "./components/Button";
 import Search from "./components/Search";
+
 import { createElement } from "./utils/elements";
 import { getCharacterS } from "./utils/apis";
 
@@ -14,6 +16,7 @@ function App() {
   const header = Header();
 
   const characterList = allCharacters();
+
   const loadButton = Button({
     innerText: "More Characters",
     onclick: () => {
@@ -27,11 +30,21 @@ function App() {
   async function loadCharacters(name, page) {
     const characterS = await getCharacterS(name, page);
     const characterElements = characterS.results.map((character) =>
+
+  const main = createElement("main", {
+    children: [characterList],
+  });
+
+  async function loadCharacters() {
+    const characterS = await getCharacterS();
+    const characterElements = characterS.map((character) =>
+
       Character({
         name: character.name,
         imgSrc: character.image,
       })
     );
+
 
     characterList.append(...characterElements);
 
@@ -61,6 +74,16 @@ function App() {
     if (offsetY < window.pageYOffset) {
       loadButton.click();
     }
+  });
+
+
+
+    characterList.append(...characterElements);
+  }
+
+  loadCharacters();
+  const container = createElement("div", {
+    children: [header, main],
   });
 
   return container;
