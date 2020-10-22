@@ -1,8 +1,19 @@
 .header {
-  height: 64px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(54 54 54);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 16px 32px;
+  width: 100%;
 }
 
 .header > img {
   height: 50px;
+}
+
+main {
+  margin-top: 96px;
 }

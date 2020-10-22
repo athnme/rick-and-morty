@@ -9,6 +9,7 @@ function Character({ name, imgSrc }) {
   const avatar = createElement("img", {
     src: imgSrc,
     alt: name,
+    loading: "lazy",
   });
 
   const characterCard = createElement("article", {
